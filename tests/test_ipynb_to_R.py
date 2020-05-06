@@ -6,7 +6,9 @@ from jupytext.compare import compare_notebooks
 from .utils import list_notebooks
 
 
-@pytest.mark.parametrize('nb_file,ext', itertools.product(list_notebooks('ipynb_R'), ['.r', '.R']))
+@pytest.mark.parametrize(
+    "nb_file,ext", itertools.product(list_notebooks("ipynb_R"), [".r", ".R"])
+)
 def test_identity_source_write_read(nb_file, ext):
     """
     Test that writing the notebook with R, and read again,
@@ -19,4 +21,4 @@ def test_identity_source_write_read(nb_file, ext):
     R = jupytext.writes(nb1, ext)
     nb2 = jupytext.reads(R, ext)
 
-    compare_notebooks(nb1, nb2)
+    compare_notebooks(nb2, nb1)
